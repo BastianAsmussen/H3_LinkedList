@@ -1,11 +1,5 @@
 namespace LinkedList;
 
-public enum SortOrder
-{
-    Ascending,
-    Descending
-}
-
 public class LinkedList<T>(Element<T>? first = null)
 {
     private Element<T>? First { get; set; } = first;
@@ -52,74 +46,27 @@ public class LinkedList<T>(Element<T>? first = null)
         return null;
     }
 
-    public void Sort(SortOrder sortOrder = SortOrder.Ascending)
+    public void Sort(Ordering ordering = Ordering.Ascending)
     {
-        First = MergeSort(First, sortOrder);
+        First = MergeSort<T>.Sort(First, ordering);
     }
 
-    private static Element<T>? MergeSort(Element<T>? head, SortOrder sortOrder)
+    public void Reverse()
     {
-        if (head?.Next == null)
-            return head;
+        Element<T>? previous = null;
+        var current = First;
 
-        var middle = GetMiddle(head);
-        var nextOfMiddle = middle?.Next;
-
-        if (middle != null)
-            middle.Next = null;
-
-        var left = MergeSort(head, sortOrder);
-        var right = MergeSort(nextOfMiddle, sortOrder);
-
-        return Merge(left, right, sortOrder);
-    }
-
-    private static Element<T>? Merge(Element<T>? left, Element<T>? right, SortOrder sortOrder)
-    {
-        Element<T>? result;
-
-        if (left == null)
-            return right;
-        if (right == null)
-            return left;
-
-        var comparison = Comparer<T>.Default.Compare(left.Value, right.Value);
-        var isSorted = sortOrder switch
+        while (current != null)
         {
-            SortOrder.Ascending => comparison <= 0,
-            SortOrder.Descending => comparison >= 0,
-            _ => throw new ArgumentOutOfRangeException(nameof(sortOrder), sortOrder, null)
-        };
+            var next = current.Next;
 
-        if (isSorted)
-        {
-            result = left;
-            result.Next = Merge(left.Next, right, sortOrder);
-        }
-        else
-        {
-            result = right;
-            result.Next = Merge(left, right.Next, sortOrder);
+            current.Next = previous;
+
+            previous = current;
+            current = next;
         }
 
-        return result;
-    }
-
-    private static Element<T>? GetMiddle(Element<T>? head)
-    {
-        if (head == null)
-            return head;
-
-        var slow = head;
-        var fast = head;
-
-        while (fast.Next is { Next: not null })
-        {
-            slow = slow?.Next;
-            fast = fast.Next.Next;
-        }
-
-        return slow;
+        First = previous;
     }
 
     public override string ToString() => string.Join(" -> ", First);
