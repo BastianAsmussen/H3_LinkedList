@@ -57,7 +57,7 @@ public class LinkedList<T>(Element<T>? first = null)
         First = MergeSort(First, sortOrder);
     }
 
-    private Element<T>? MergeSort(Element<T>? head, SortOrder sortOrder)
+    private static Element<T>? MergeSort(Element<T>? head, SortOrder sortOrder)
     {
         if (head?.Next == null)
             return head;
@@ -113,7 +113,7 @@ public class LinkedList<T>(Element<T>? first = null)
         var slow = head;
         var fast = head;
 
-        while (fast.Next != null && fast.Next.Next != null)
+        while (fast.Next is { Next: not null })
         {
             slow = slow?.Next;
             fast = fast.Next.Next;
