@@ -2,37 +2,37 @@ namespace LinkedList.Tests;
 
 public class LinkedListTest
 {
-    [Fact]
+    [Test]
     public void LinkedListShouldBeEmpty()
     {
         var linkedList = new LinkedList<int>();
 
-        Assert.True(linkedList.IsEmpty());
+        Assert.That(linkedList.IsEmpty(), Is.True);
     }
 
-    [Fact]
+    [Test]
     public void AddElement()
     {
         var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
 
-        Assert.False(linkedList.IsEmpty());
+        Assert.That(linkedList.IsEmpty(), Is.False);
     }
 
-    [Fact]
+    [Test]
     public void RemoveElement()
     {
         var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
-        Assert.Equal(1, linkedList.Count());
+        Assert.That(linkedList.Count(), Is.EqualTo(1));
 
         linkedList.RemoveFirst();
-        Assert.Equal(0, linkedList.Count());
+        Assert.That(linkedList.Count(), Is.EqualTo(0));
     }
 
-    [Fact]
+    [Test]
     public void ClearLinkedList()
     {
         var linkedList = new LinkedList<int>();
@@ -40,13 +40,13 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(2));
         linkedList.AddFirst(new Element<int>(3));
-        Assert.Equal(3, linkedList.Count());
+        Assert.That(linkedList.Count(), Is.EqualTo(3));
 
         linkedList.Clear();
-        Assert.Equal(0, linkedList.Count());
+        Assert.That(linkedList.Count(), Is.EqualTo(0));
     }
 
-    [Fact]
+    [Test]
     public void TestCount()
     {
         var linkedList = new LinkedList<int>();
@@ -55,10 +55,10 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(2));
         linkedList.AddFirst(new Element<int>(3));
 
-        Assert.Equal(3, linkedList.Count());
+        Assert.That(linkedList.Count(), Is.EqualTo(3));
     }
 
-    [Fact]
+    [Test]
     public void TestGet()
     {
         var linkedList = new LinkedList<int>();
@@ -67,18 +67,18 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(2));
         linkedList.AddFirst(new Element<int>(3));
 
-        Assert.Equal(1, linkedList.Get(2)?.Value);
+        Assert.That(linkedList.Get(2)?.Value!, Is.EqualTo(1));
     }
 
-    [Fact]
+    [Test]
     public void TestIsEmpty()
     {
         var linkedList = new LinkedList<int>();
 
-        Assert.True(linkedList.IsEmpty());
+        Assert.That(linkedList.IsEmpty(), Is.True);
     }
 
-    [Fact]
+    [Test]
     public void TestSortAscending()
     {
         var linkedList = new LinkedList<int>();
@@ -86,13 +86,13 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(3));
         linkedList.AddFirst(new Element<int>(2));
-        Assert.Equal("2 -> 3 -> 1", linkedList.ToString());
+        Assert.That(linkedList.ToString(), Is.EqualTo("2 -> 3 -> 1"));
 
         linkedList.Sort();
-        Assert.Equal("1 -> 2 -> 3", linkedList.ToString());
+        Assert.That(linkedList.ToString(), Is.EqualTo("1 -> 2 -> 3"));
     }
 
-    [Fact]
+    [Test]
     public void TestSortDescending()
     {
         var linkedList = new LinkedList<int>();
@@ -100,13 +100,13 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(3));
         linkedList.AddFirst(new Element<int>(2));
-        Assert.Equal("2 -> 3 -> 1", linkedList.ToString());
+        Assert.That(linkedList.ToString(), Is.EqualTo("2 -> 3 -> 1"));
 
         linkedList.Sort(SortOrder.Descending);
-        Assert.Equal("3 -> 2 -> 1", linkedList.ToString());
+        Assert.That(linkedList.ToString(), Is.EqualTo("3 -> 2 -> 1"));
     }
 
-    [Fact]
+    [Test]
     public void TestToString()
     {
         var linkedList = new LinkedList<int>();
@@ -115,6 +115,6 @@ public class LinkedListTest
         linkedList.AddFirst(new Element<int>(2));
         linkedList.AddFirst(new Element<int>(1));
 
-        Assert.Equal("1 -> 2 -> 3", linkedList.ToString());
+        Assert.That(linkedList.ToString(), Is.EqualTo("1 -> 2 -> 3"));
     }
 }

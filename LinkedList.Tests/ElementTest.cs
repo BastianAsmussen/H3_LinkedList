@@ -2,37 +2,37 @@ namespace LinkedList.Tests;
 
 public class ElementTest
 {
-    [Fact]
+    [Test]
     public void ElementShouldHaveValue()
     {
         var element = new Element<int>(1);
 
-        Assert.Equal(1, element.Value);
+        Assert.That(element.Value, Is.EqualTo(1));
     }
 
-    [Fact]
+    [Test]
     public void ElementNextIsNull()
     {
         var element = new Element<int>(1);
 
-        Assert.Null(element.Next);
+        Assert.That(element.Next, Is.Null);
     }
 
-    [Fact]
+    [Test]
     public void ElementNextNotNull()
     {
         var next = new Element<int>(2);
         var element = new Element<int>(1, next);
 
-        Assert.NotNull(element.Next);
+        Assert.That(element.Next, Is.Not.Null);
     }
 
-    [Fact]
+    [Test]
     public void ElementToString()
     {
         var next = new Element<int>(2);
         var element = new Element<int>(1, next);
 
-        Assert.Equal("1 -> 2", element.ToString());
+        Assert.That(element.ToString(), Is.EqualTo("1 -> 2"));
     }
 }
