@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 Console.WriteLine("Generating...");
-var linkedList = LinkedList.LinkedList<int>.GenerateRandom(10_000);
+var linkedList = LinkedList.LinkedList<int>.GenerateRandom(1_000_000);
 // Console.WriteLine($"Unsorted: {linkedList}");
 
 Console.WriteLine("Sorting...");

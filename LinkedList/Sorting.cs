@@ -6,66 +6,58 @@ public enum Ordering
     Descending
 }
 
-public static class MergeSort<T>
+public static class QuickSort<T>
 {
     public static Element<T>? Sort(Element<T>? head, Ordering ordering)
     {
         if (head?.Next == null)
             return head;
 
-        var middle = GetMiddle(head);
-        var nextOfMiddle = middle!.Next;
+        var pivot = head;
+        var current = head.Next;
 
-        middle.Next = null;
+        Element<T>? left = null;
+        Element<T>? right = null;
 
-        var left = Sort(head, ordering);
-        var right = Sort(nextOfMiddle, ordering);
+        while (current != null)
+        {
+            var next = current.Next;
 
-        return MergeParts(left, right, ordering);
-    }
+            if (Compare(current, pivot, ordering))
+            {
+                current.Next = left;
+                left = current;
+            }
+            else
+            {
+                current.Next = right;
+                right = current;
+            }
 
-    private static Element<T>? MergeParts(Element<T>? left, Element<T>? right, Ordering ordering)
-    {
-        Element<T>? result;
+            current = next;
+        }
+
+        left = Sort(left, ordering);
+        right = Sort(right, ordering);
 
         if (left == null)
-            return right;
-        if (right == null)
-            return left;
-
-        var comparison = Comparer<T>.Default.Compare(left.Value, right.Value);
-        var isSorted = ordering switch
         {
-            Ordering.Ascending => comparison <= 0,
-            Ordering.Descending => comparison >= 0,
-            _ => throw new ArgumentOutOfRangeException(nameof(ordering), ordering, null)
-        };
-
-        if (isSorted)
-        {
-            result = left;
-            result.Next = MergeParts(left.Next, right, ordering);
-        }
-        else
-        {
-            result = right;
-            result.Next = MergeParts(left, right.Next, ordering);
+            pivot.Next = right;
+            return pivot;
         }
 
-        return result;
+        var leftTail = LinkedList<T>.GetTail(left);
+        leftTail.Next = pivot;
+        pivot.Next = right;
+
+        return left;
     }
 
-    private static Element<T>? GetMiddle(Element<T>? head)
+    private static bool Compare(Element<T> left, Element<T> right, Ordering ordering)
     {
-        var slow = head;
-        var fast = head;
+        if (ordering == Ordering.Ascending)
+            return Comparer<T>.Default.Compare(left.Value, right.Value) < 0;
 
-        while (fast?.Next is { Next: not null })
-        {
-            slow = slow!.Next;
-            fast = fast.Next.Next;
-        }
-
-        return slow;
+        return Comparer<T>.Default.Compare(left.Value, right.Value) > 0;
     }
 }

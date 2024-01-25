@@ -46,9 +46,19 @@ public class LinkedList<T>(Element<T>? first = null)
         return null;
     }
 
+    public static Element<T> GetTail(Element<T> head)
+    {
+        var current = head;
+
+        while (current.Next != null)
+            current = current.Next;
+
+        return current;
+    }
+
     public void Sort(Ordering ordering = Ordering.Ascending)
     {
-        First = MergeSort<T>.Sort(First, ordering);
+        First = QuickSort<T>.Sort(First, ordering);
     }
 
     public void Reverse()
