@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\LinkedList.csproj", "{B7543C34-2501-4A32-BA7F-A086758A2A6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListe.Tests", "LinkedListe.Tests\LinkedListe.Tests.csproj", "{B4A3A761-2042-4166-A6AF-27157F88EB6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList.Tests", "LinkedList.Tests\LinkedList.Tests.csproj", "{8F660EA6-7C3C-4D28-BC0D-F83CC59BFF9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{B7543C34-2501-4A32-BA7F-A086758A2A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7543C34-2501-4A32-BA7F-A086758A2A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7543C34-2501-4A32-BA7F-A086758A2A6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4A3A761-2042-4166-A6AF-27157F88EB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4A3A761-2042-4166-A6AF-27157F88EB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4A3A761-2042-4166-A6AF-27157F88EB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4A3A761-2042-4166-A6AF-27157F88EB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F660EA6-7C3C-4D28-BC0D-F83CC59BFF9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F660EA6-7C3C-4D28-BC0D-F83CC59BFF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F660EA6-7C3C-4D28-BC0D-F83CC59BFF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F660EA6-7C3C-4D28-BC0D-F83CC59BFF9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

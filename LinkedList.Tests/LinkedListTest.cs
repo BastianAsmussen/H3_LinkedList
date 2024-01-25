@@ -1,13 +1,11 @@
-using LinkedList;
-
-namespace LinkedListe.Tests;
+namespace LinkedList.Tests;
 
 public class LinkedListTest
 {
     [Fact]
     public void LinkedListShouldBeEmpty()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         Assert.True(linkedList.IsEmpty());
     }
@@ -15,7 +13,8 @@ public class LinkedListTest
     [Fact]
     public void AddElement()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
+
         linkedList.AddFirst(new Element<int>(1));
 
         Assert.False(linkedList.IsEmpty());
@@ -24,7 +23,7 @@ public class LinkedListTest
     [Fact]
     public void RemoveElement()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         Assert.Equal(1, linkedList.Count());
@@ -36,7 +35,7 @@ public class LinkedListTest
     [Fact]
     public void ClearLinkedList()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(2));
@@ -50,7 +49,7 @@ public class LinkedListTest
     [Fact]
     public void TestCount()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(2));
@@ -62,7 +61,7 @@ public class LinkedListTest
     [Fact]
     public void TestGet()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(2));
@@ -74,7 +73,7 @@ public class LinkedListTest
     [Fact]
     public void TestIsEmpty()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         Assert.True(linkedList.IsEmpty());
     }
@@ -82,7 +81,7 @@ public class LinkedListTest
     [Fact]
     public void TestSortAscending()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(3));
@@ -96,7 +95,7 @@ public class LinkedListTest
     [Fact]
     public void TestSortDescending()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(1));
         linkedList.AddFirst(new Element<int>(3));
@@ -110,7 +109,7 @@ public class LinkedListTest
     [Fact]
     public void TestToString()
     {
-        var linkedList = new LinkedList.LinkedList<int>();
+        var linkedList = new LinkedList<int>();
 
         linkedList.AddFirst(new Element<int>(3));
         linkedList.AddFirst(new Element<int>(2));
