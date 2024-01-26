@@ -106,6 +106,26 @@ public class LinkedListTest
     }
 
     [Test]
+    public void TestGetTail()
+    {
+        var linkedList = new LinkedList<int>();
+
+        linkedList.AddFirst(new Element<int>(1));
+        linkedList.AddFirst(new Element<int>(2));
+        linkedList.AddFirst(new Element<int>(3));
+
+        Assert.That(linkedList.GetTail()!.Value, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void TestGetTailNull()
+    {
+        var linkedList = new LinkedList<int>();
+
+        Assert.That(linkedList.GetTail(), Is.Null);
+    }
+
+    [Test]
     public void TestIsEmpty()
     {
         var linkedList = new LinkedList<int>();

@@ -28,6 +28,32 @@ public class ElementTest
     }
 
     [Test]
+    public void ElementGetTail()
+    {
+        var next = new Element<int>(2);
+        var element = new Element<int>(1, next);
+
+        Assert.That(element.GetTail(), Is.EqualTo(next));
+    }
+
+    [Test]
+    public void ElementGetTailNull()
+    {
+        var first = (Element<int>?)null;
+
+        Assert.That(first?.GetTail(), Is.Null);
+    }
+
+    [Test]
+    public void ElementGetTailOneElement()
+    {
+        var second = new Element<int>(2);
+        var first = new Element<int>(1, second);
+
+        Assert.That(first.GetTail(), Is.EqualTo(second));
+    }
+
+    [Test]
     public void ElementToString()
     {
         var next = new Element<int>(2);
