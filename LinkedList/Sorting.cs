@@ -8,59 +8,59 @@ public enum Ordering
 
 public static class QuickSort<T>
 {
-    public static Element<T>? Sort(Element<T>? head, Ordering ordering)
+    public static T[] Sort(T[] array, Ordering ordering)
     {
-        if (head?.Next == null)
-            return head;
+        if (array.Length < 2)
+            return array;
 
-        var pivot = head;
-        var current = head.Next;
+        Sort(array, 0, array.Length - 1, ordering);
 
-        Element<T>? left = null;
-        Element<T>? right = null;
-
-        while (current != null)
-        {
-            var next = current.Next;
-
-            // Check if the current element is less than the pivot.
-            if (Compare(current, pivot, ordering))
-            {
-                current.Next = left;
-                left = current;
-            }
-            else
-            {
-                current.Next = right;
-                right = current;
-            }
-
-            current = next;
-        }
-
-        left = Sort(left, ordering);
-        right = Sort(right, ordering);
-
-        if (left == null)
-        {
-            pivot.Next = right;
-
-            return pivot;
-        }
-
-        var leftTail = left.GetTail();
-        if (leftTail != null) leftTail.Next = pivot;
-
-        pivot.Next = right;
-
-        return left;
+        return array;
     }
 
-    private static bool Compare(Element<T> left, Element<T> right, Ordering ordering)
+    private static void Sort(T[] array, int left, int right, Ordering ordering)
     {
-        if (ordering == Ordering.Ascending)
-            return Comparer<T>.Default.Compare(left.Value, right.Value) < 0;
+        while (true)
+        {
+            if (left >= right) return;
 
-        return Comparer<T>.Default.Compare(left.Value, right.Value) > 0;
+            var pivot = Partition(array, left, right, ordering);
+
+            Sort(array, left, pivot - 1, ordering);
+
+            left = pivot + 1;
+        }
+    }
+
+    private static int Partition(T[] array, int left, int right, Ordering ordering)
+    {
+        var pivot = array[right];
+        var i = left - 1;
+
+        for (var j = left; j < right; j++)
+        {
+            if (Compare(array[j], pivot, ordering) > 0) continue;
+
+            Swap(array, ++i, j);
+        }
+
+        Swap(array, i + 1, right);
+
+        return i + 1;
+    }
+
+    private static int Compare(T left, T right, Ordering ordering)
+    {
+        return ordering switch
+        {
+            Ordering.Ascending => Comparer<T>.Default.Compare(right, left),
+            Ordering.Descending => Comparer<T>.Default.Compare(left, right),
+            _ => throw new ArgumentOutOfRangeException(nameof(ordering), ordering, null)
+        };
+    }
+
+    private static void Swap(IList<T> array, int left, int right)
+    {
+        (array[left], array[right]) = (array[right], array[left]);
     }
 }

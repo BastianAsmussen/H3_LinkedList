@@ -53,7 +53,7 @@ public class LinkedList<T>(Element<T>? first = null)
 
     public void Sort(Ordering ordering = Ordering.Ascending)
     {
-        First = QuickSort<T>.Sort(First, ordering);
+        FromArray(QuickSort<T>.Sort(ToArray(), ordering));
     }
 
     public void Reverse()
@@ -74,6 +74,29 @@ public class LinkedList<T>(Element<T>? first = null)
         First = previous;
     }
 
+    private T[] ToArray()
+    {
+        var array = new T[Count()];
+        var current = First;
+        var index = 0;
+
+        while (current != null)
+        {
+            array[index++] = current.Value;
+            current = current.Next;
+        }
+
+        return array;
+    }
+
+    private void FromArray(IEnumerable<T> array)
+    {
+        Clear();
+
+        foreach (var element in array)
+            AddFirst(new Element<T>(element));
+    }
+
     public override string ToString() => string.Join(" -> ", First);
 
     public static LinkedList<int> GenerateRandom(int count)
@@ -83,7 +106,7 @@ public class LinkedList<T>(Element<T>? first = null)
         var linkedList = new LinkedList<int>();
         for (var i = 0; i < count; i++)
         {
-            var element = new Element<int>(rand.Next(-count, count));
+            var element = new Element<int>(rand.Next());
 
             linkedList.AddFirst(element);
         }
