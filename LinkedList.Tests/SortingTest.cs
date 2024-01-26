@@ -51,4 +51,15 @@ public class SortingTest
         linkedList.Sort();
         Assert.That(linkedList.ToString(), Is.EqualTo("1"));
     }
+
+    [Test]
+    public void TestCompareNull()
+    {
+        var linkedList = new LinkedList<int>();
+        linkedList.AddFirst(new Element<int>(1));
+        linkedList.AddFirst(new Element<int>(2));
+        linkedList.AddFirst(new Element<int>(3));
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => linkedList.Sort((Ordering)2));
+    }
 }
