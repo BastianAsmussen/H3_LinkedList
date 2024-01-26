@@ -23,6 +23,7 @@ public static class QuickSort<T>
         {
             var next = current.Next;
 
+            // Check if the current element is less than the pivot.
             if (Compare(current, pivot, ordering))
             {
                 current.Next = left;
@@ -43,11 +44,13 @@ public static class QuickSort<T>
         if (left == null)
         {
             pivot.Next = right;
+
             return pivot;
         }
 
-        var leftTail = LinkedList<T>.GetTail(left);
-        leftTail.Next = pivot;
+        var leftTail = left.GetTail();
+        if (leftTail != null) leftTail.Next = pivot;
+
         pivot.Next = right;
 
         return left;

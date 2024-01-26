@@ -46,14 +46,9 @@ public class LinkedList<T>(Element<T>? first = null)
         return null;
     }
 
-    public static Element<T> GetTail(Element<T> head)
+    public Element<T>? GetTail()
     {
-        var current = head;
-
-        while (current.Next != null)
-            current = current.Next;
-
-        return current;
+        return First?.GetTail();
     }
 
     public void Sort(Ordering ordering = Ordering.Ascending)
@@ -101,6 +96,16 @@ public class Element<T>(T value, Element<T>? next = null)
 {
     public T Value { get; } = value;
     public Element<T>? Next { get; set; } = next;
-    
+
+    public Element<T>? GetTail()
+    {
+        var current = this;
+
+        while (current?.Next != null)
+            current = current.Next;
+
+        return current;
+    }
+
     public override string ToString() => $"{Value}{(Next != null ? $" -> {Next}" : "")}";
 }
